@@ -2090,7 +2090,7 @@ export default {
 .list-wrap .header {
   width: 100%;
   height: 40px;
-  background-color: rgba(236, 245, 255, 0.51);
+  background-color: #f5efe3;
   line-height: 40px;
   color: #1f2d3d;
   font-size: 13px;
@@ -2118,7 +2118,7 @@ export default {
 .off-text {
   color: #fff;
   border-radius: 4px;
-  background: #594d72;
+  background: #2b3a4a;
   line-height: 15px;
   padding: 4px 10px;
   font-size: 12px;
@@ -2126,7 +2126,7 @@ export default {
 }
 
 .status-text {
-  color: #f0797f;
+  color: #b83a2f;
   margin-right: 10px;
 }
 
@@ -2155,7 +2155,7 @@ export default {
 .price-change {
   float: right;
   margin-right: 10px;
-  color: #e64242;
+  color: #b83a2f;
 }
 
 .content-wrap {
@@ -2279,14 +2279,14 @@ export default {
 }
 
 .goods-spec {
-  color: #0066cc;
+  color: #2b3a4a;
   font-size: 14px;
   margin-right: 30px;
   width: 60px;
 }
 
 .goods-number {
-  color: #ff3456;
+  color: #b83a2f;
   font-size: 14px;
   margin-right: 20px;
 }
@@ -2333,7 +2333,7 @@ export default {
 }
 
 .other .title {
-  background: #eaeaea;
+  background: #efe7d6;
 }
 
 .user-name {
@@ -2364,7 +2364,7 @@ export default {
   font-size: 14px;
   line-height: 20px;
   margin-top: 4px;
-  background-color: #fbf7c5;
+  background-color: #f8efdc;
   padding: 10px;
 }
 
@@ -2381,7 +2381,7 @@ export default {
   font-size: 14px;
   line-height: 20px;
   margin-top: 4px;
-  background-color: #fbf7c5;
+  background-color: #f8efdc;
   padding: 10px;
   margin: 10px 0;
 }
@@ -2391,7 +2391,7 @@ export default {
   font-size: 14px;
   line-height: 20px;
   margin-top: 4px;
-  background-color: #fde7e7;
+  background-color: #f8ebea;
   padding: 10px;
   margin: 10px 0;
 }
@@ -2428,7 +2428,7 @@ export default {
 
 .express-info {
   padding: 10px;
-  color: #ff3456;
+  color: #b83a2f;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;

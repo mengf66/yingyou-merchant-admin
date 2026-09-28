@@ -2,10 +2,14 @@
   <div class="login">
     <div class="login-box">
       <div class="logo">
-        <img src="static/images/loading.gif" />
+        <span class="seal">晋</span>
+        <div>
+          <div class="name">应游晋游</div>
+          <div class="sub">古城商户后台</div>
+        </div>
       </div>
       <div class="body">
-        <p class="tips">应游晋游 · 古城商户后台</p>
+        <p class="tips">商户登录</p>
         <el-form ref="form" :model="form" :rules="rules" label-position="top">
           <el-form-item label="" prop="username">
             <el-input v-model="form.username" placeholder="用户名"></el-input>
@@ -128,68 +132,122 @@ export default {
 };
 </script>
 <style>
+/* 登录页：夜色古城背景 + 宣纸登录卡（原背景图外链到开源作者网站，已替换为本地 SVG） */
 .login {
-  align-items: center;
-  background: url("https://www.qile.club/img/back.jpg");
-  /* 以上为登录背景,可以自己更换成自己喜欢的 */
-  background-size: 100%;
-  background-repeat: no-repeat;
+  position: relative;
   display: flex;
-  font-family: Lato, Helvetica, sans-serif;
+  align-items: center;
   justify-content: center;
-  text-align: center;
-  height: 100%;
   width: 100%;
-  color: #656565;
+  height: 100%;
+  overflow: hidden;
+  color: #5c534c;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 400' preserveAspectRatio='xMidYMax slice'%3E%3Cpath d='M0 220 L180 120 L330 180 L520 60 L700 170 L860 100 L1040 190 L1240 90 L1420 170 L1600 110 V400 H0Z' fill='%232f4d8a' opacity='.55'/%3E%3Cpath d='M0 280 L220 210 L420 250 L640 190 L860 260 L1100 200 L1320 250 L1600 210 V400 H0Z' fill='%23223d74'/%3E%3Cg fill='%230c1a3c'%3E%3Crect x='0' y='300' width='1600' height='100'/%3E%3Crect x='700' y='230' width='200' height='72'/%3E%3Cpath d='M650 240 L950 240 L910 206 L690 206Z'/%3E%3Crect x='740' y='176' width='120' height='32'/%3E%3Cpath d='M710 184 L890 184 L862 156 L738 156Z'/%3E%3C/g%3E%3Cpath d='M650 240 L690 206 L910 206 L950 240 M710 184 L738 156 L862 156 L890 184 M0 300 H1600' fill='none' stroke='%23d9b36a' stroke-width='2' opacity='.8'/%3E%3C/svg%3E") center bottom / 100% auto no-repeat,
+    radial-gradient(circle at 75% 22%, rgba(240, 217, 162, 0.55) 0, rgba(240, 217, 162, 0.15) 70px, transparent 140px),
+    linear-gradient(180deg, #0c1735 0%, #16295a 70%, #1d3569 100%);
 }
 
 .login-box {
-  width: 320px;
-  background: #fff;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 12px #ccc;
+  position: relative;
+  width: 380px;
+  padding-bottom: 10px;
+  background: #fffdf8;
+  border: 1px solid #e6dccb;
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.login-box::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #efe5d3;
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 .login-box .logo {
-  height: 100px;
-  padding-top: 30px;
-  /*background: #324157;*/
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 14px;
+  padding: 36px 0 8px;
 }
 
-.login-box .logo img {
-  width: 80px;
-  height: 80px;
+.login-box .seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-family: "STXingkai", "STKaiti", "KaiTi", serif;
+  font-size: 30px;
+  color: #fff6e6;
+  background: linear-gradient(135deg, #c9483a, #962c23);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 3px rgba(255, 246, 230, 0.35), 0 4px 10px rgba(150, 44, 35, 0.3);
+}
+
+.login-box .name {
+  font-family: "STXingkai", "STKaiti", "KaiTi", serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  color: #2a2522;
+  text-align: left;
+}
+
+.login-box .sub {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #8f857b;
+  text-align: left;
 }
 
 .login-box .body {
-  padding: 10px 30px 30px 30px;
+  position: relative;
+  padding: 10px 36px 28px;
 }
 
 .login-box .body .tips {
-  font-size: 14px;
-  height: 40px;
-  line-height: 40px;
+  margin: 8px 0 22px;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 17px;
+  letter-spacing: 4px;
   text-align: center;
-  margin-bottom: 30px;
+  color: #b83a2f;
+}
+
+.login-box .body .tips::before,
+.login-box .body .tips::after {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  margin: 0 12px;
+  vertical-align: middle;
+  background: #e0d3bb;
+}
+
+.login-box .el-input__inner {
+  height: 42px;
+  background: #fffdf8;
+}
+
+.login-box .el-button--primary {
+  height: 44px;
+  font-family: "STKaiti", "KaiTi", serif;
+  font-size: 18px;
+  letter-spacing: 6px;
+  box-shadow: 0 6px 14px rgba(150, 44, 35, 0.25);
 }
 
 .login-box .body .author {
   display: block;
-  font-size: 14px;
   height: 40px;
   line-height: 40px;
+  font-size: 14px;
   text-align: center;
-  color: #656565;
-  margin-bottom: 10px;
-  text-decoration: none;
-}
-
-.login-box .body .author a {
-  text-decoration: none;
+  color: #8f857b;
 }
 </style>

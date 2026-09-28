@@ -23,8 +23,7 @@ body,
 #app {
   height: 100%;
   width: 100%;
-  background: #f5f7f9;
-  font-family: Lato, Helvetica, sans-serif;
+  background: #f6f1e7;
 }
 
 a,
@@ -32,26 +31,10 @@ a:hover {
   text-decoration: none;
 }
 
-/* .content-nav {
-  height: 40px;
-  background: #f5f7fa;
-  margin: 0 0 10px 0;
+/* 顶部面包屑栏样式见 styles/jin-theme.scss（原紫色渐变已替换为宣纸色） */
+.content-nav {
   display: flex;
-} */
-
-.content-nav{
-    height: 60px;
-    margin: -20px 0 10px -20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    /* background-image: linear-gradient(135deg,  #764ba2 0%, #667eea 100%); */
-}
-.el-breadcrumb ::v-deep .el-breadcrumb__inner{
-    color: #fff !important;
+  align-items: center;
 }
 
 .content-nav .breadcrumb {

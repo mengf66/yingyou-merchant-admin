@@ -3,7 +3,7 @@ import Vue from 'vue'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// Element UI 样式由 styles/jin-theme.scss 按朱红主色重新编译，不再引入默认蓝色主题
 import locale from 'element-ui/lib/locale/lang/zh-CN' // Element 组件使用中文
 
 import VueAxios from 'vue-axios'
@@ -12,6 +12,7 @@ import api from './config/api'
 
 
 import '@/styles/index.scss' // global css
+import '@/styles/jin-theme.scss' // 应游晋游主题（朱红主色、宣纸底、黛青侧栏）
 
 import App from './App'
 import store from './store'

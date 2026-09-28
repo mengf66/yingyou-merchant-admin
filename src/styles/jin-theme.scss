@@ -1,0 +1,166 @@
+/*
+ * 应游晋游 · 商户后台主题
+ * 与景区端保持一致：宣纸米白底 + 朱红主色 + 黛青侧栏 + 鎏金点缀。
+ * 通过 Element UI 的 SCSS 变量换主色，所有按钮、链接、开关、分页等组件自动变为朱红。
+ */
+
+/* ---------- Element UI 主题变量 ---------- */
+$--color-primary: #b83a2f;
+$--color-success: #3f7a5f;
+$--color-warning: #c9892f;
+$--color-danger: #c2413a;
+$--color-info: #8f857b;
+$--color-text-primary: #2a2522;
+$--color-text-regular: #4a423c;
+$--color-text-secondary: #8f857b;
+$--border-color-base: #ddd2bf;
+$--border-color-light: #e6dccb;
+$--border-color-lighter: #eee6d8;
+$--border-color-extra-light: #f3ede2;
+$--background-color-base: #f7f2e8;
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import '~element-ui/packages/theme-chalk/src/index';
+
+/* ---------- 全局 ---------- */
+$zhu: #b83a2f;
+$zhu-deep: #962c23;
+$dai: #2b3a4a;
+$dai-deep: #1f2b37;
+$jin: #c9a45c;
+$jin-light: #f0d9a2;
+$xuan: #f6f1e7;
+$mo: #2a2522;
+$mo-3: #8f857b;
+$line: #e6dccb;
+
+html,
+body,
+#app {
+  background: $xuan !important;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif !important;
+  color: $mo;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(143, 133, 123, 0.35);
+  border-radius: 3px;
+}
+
+/* ---------- 页面顶栏（原紫色渐变） ---------- */
+.content-nav {
+  position: relative;
+  height: 60px !important;
+  margin: -20px -20px 16px -20px !important;
+  padding: 0 24px !important;
+  background: rgba(255, 253, 248, 0.95) !important;
+  background-image: none !important;
+  border-bottom: 1px solid $line;
+}
+.content-nav .breadcrumb {
+  height: 60px !important;
+  line-height: 60px !important;
+}
+.content-nav .el-breadcrumb__inner,
+.content-nav .el-breadcrumb__inner a,
+.el-breadcrumb ::v-deep .el-breadcrumb__inner {
+  color: $mo-3 !important;
+  font-size: 13px;
+}
+.content-nav .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  font-family: 'STKaiti', 'KaiTi', serif;
+  font-size: 20px !important;
+  letter-spacing: 2px;
+  color: $mo !important;
+}
+.content-nav .el-breadcrumb__separator {
+  color: #cfc3ad;
+}
+
+/* ---------- 内容卡片 ---------- */
+.content-main {
+  padding: 20px 22px !important;
+  background: #fffdf8 !important;
+  border: 1px solid $line;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(80, 60, 30, 0.04), 0 4px 14px rgba(80, 60, 30, 0.04);
+}
+
+/* ---------- 表格 ---------- */
+.el-table {
+  background: transparent;
+  color: #4a423c;
+}
+.el-table th,
+.el-table thead tr th.is-leaf {
+  background: #f5efe3 !important;
+  color: #5c534c;
+  font-weight: 600;
+}
+.el-table tr {
+  background: #fffdf8;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background: #fcf9f3;
+}
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+  background: #fbf3ea !important;
+}
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom-color: #eee6d8;
+}
+
+/* ---------- Tabs（订单状态等） ---------- */
+.el-tabs__item {
+  font-size: 14px;
+}
+.el-tabs__item.is-active {
+  font-weight: 600;
+}
+.el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+  background: #fffdf8;
+  border-bottom-color: #fffdf8;
+}
+
+/* ---------- 按钮 ---------- */
+.el-button {
+  letter-spacing: 1px;
+}
+.el-button--primary {
+  background: linear-gradient(180deg, #c9483a, #a3342a);
+  border-color: #a3342a;
+}
+.el-button--primary:hover,
+.el-button--primary:focus {
+  background: linear-gradient(180deg, #d4584a, #b03a2f);
+  border-color: #b03a2f;
+}
+.el-button--primary.is-plain {
+  background: #f8ebea;
+  color: $zhu;
+  border-color: #eac4c0;
+}
+
+/* ---------- 卡片 / 弹窗 ---------- */
+.el-card {
+  background: #fffdf8;
+  border-color: $line;
+  border-radius: 6px;
+}
+.el-card__header {
+  border-bottom-color: #eee6d8;
+}
+.el-dialog {
+  background: #fffdf8;
+  border-radius: 8px;
+}
+.el-dialog__title {
+  font-family: 'STKaiti', 'KaiTi', serif;
+  font-size: 19px;
+  letter-spacing: 1px;
+}

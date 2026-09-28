@@ -6,22 +6,29 @@
             </el-breadcrumb>
         </div>
         <div class="content-main clearfix">
+            <div class="hero">
+                <div class="hero-text">
+                    <h2>{{ greeting }}，{{ username || '掌柜' }}</h2>
+                    <p>今日也请用心经营 · 让古城烟火气传得更远</p>
+                </div>
+                <div class="hero-date">{{ today }}</div>
+            </div>
             <div class="header clearfix">
-                <el-card class="box-card stat-card" shadow="hover">
+                <el-card class="box-card stat-card" shadow="hover" style="--c: #b83a2f">
                     <router-link class="link-color" :to="{ path: '/dashboard/order' }">
                         <div class="stat-title">待发货订单</div>
                         <h1 class="stat-num">{{infoData.orderToDelivery || 0}}</h1>
                         <div class="stat-foot"><span>待发货订单</span><span>{{infoData.orderToDelivery || 0}}</span></div>
                     </router-link>
                 </el-card>
-                <el-card class="box-card stat-card" shadow="hover">
+                <el-card class="box-card stat-card" shadow="hover" style="--c: #3f7a5f">
                     <router-link class="link-color" :to="{ path: '/dashboard/goods' }">
                         <div class="stat-title">上架中的商品</div>
                         <h1 class="stat-num">{{infoData.goodsOnsale || 0}}</h1>
                         <div class="stat-foot"><span>上架中的商品</span><span>{{infoData.goodsOnsale || 0}}</span></div>
                     </router-link>
                 </el-card>
-                <el-card class="box-card stat-card" shadow="hover">
+                <el-card class="box-card stat-card" shadow="hover" style="--c: #a88340">
                     <router-link class="link-color" :to="{ path: '/dashboard/user' }">
                         <div class="stat-title">总用户数</div>
                         <h1 class="stat-num">{{infoData.user || 0}}</h1>
@@ -39,7 +46,7 @@
                 <div class="tab-content clearfix">
                     <el-card class="box-card2">
                         <div slot="header" class="clearfix">
-                            <span style="line-height: 36px;">顾客</span>
+                            <span class="card-head" style="line-height: 36px;">顾客</span>
                             <el-popover
                                     placement="right"
                                     v-model="related_pop"
@@ -79,7 +86,7 @@
                     </el-card>
                     <el-card class="box-card2">
                         <div slot="header" class="clearfix">
-                            <span style="line-height: 36px;">下单</span>
+                            <span class="card-head" style="line-height: 36px;">下单</span>
                         </div>
                         <div class="text item">
                             <span>加入购物车</span>
@@ -92,7 +99,7 @@
                     </el-card>
                     <el-card class="box-card2">
                         <div slot="header" class="clearfix">
-                            <span style="line-height: 36px;">支付</span>
+                            <span class="card-head" style="line-height: 36px;">支付</span>
                         </div>
                         <div class="text item">
                             <span>成交订单数</span>
@@ -105,7 +112,7 @@
                     </el-card>
                 </div>
                 <div class="line clearfix"></div>
-                <div class="block-4 clearfix">
+                <div class="block-4">
                     <el-card class="box-card">
                         <div class="text item">
                             <span>客单价</span>
@@ -216,6 +223,13 @@
             },
         },
         computed: {
+            greeting() {
+                const h = new Date().getHours();
+                return h < 11 ? '早上好' : h < 14 ? '中午好' : h < 18 ? '下午好' : '晚上好';
+            },
+            today() {
+                return new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+            },
             // 访问人数 = 新增顾客 + 老顾客
             visitorNum() {
                 return Number(this.mainInfo.newUser || 0) + Number(this.mainInfo.oldUser || 0);
@@ -248,75 +262,133 @@
 </script>
 
 <style scoped>
+    .hero {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 96px;
+        padding: 0 28px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        color: #f0d9a2;
+        border-radius: 6px;
+        background:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 96' preserveAspectRatio='xMaxYMax slice'%3E%3Cg fill='%23c9a45c' opacity='.18'%3E%3Cpath d='M300 96 V70 H600 V96Z'/%3E%3Cpath d='M380 70 L400 52 H520 L540 70Z'/%3E%3Crect x='410' y='40' width='100' height='14'/%3E%3Cpath d='M396 42 L420 26 H500 L524 42Z'/%3E%3Crect x='456' y='14' width='8' height='14'/%3E%3C/g%3E%3C/svg%3E") right bottom / auto 100% no-repeat,
+            linear-gradient(120deg, #2b3a4a 0%, #1f2b37 60%, #3a2a24 100%);
+    }
+    .hero h2 {
+        margin: 0 0 6px;
+        font-family: 'STXingkai', 'STKaiti', 'KaiTi', serif;
+        font-size: 26px;
+        font-weight: normal;
+        letter-spacing: 3px;
+    }
+    .hero p {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: rgba(233, 223, 200, 0.65);
+    }
+    .hero-date {
+        position: relative;
+        z-index: 1;
+        font-size: 13px;
+        color: rgba(233, 223, 200, 0.8);
+    }
+    .box-card.stat-card {
+        position: relative;
+        overflow: hidden;
+        border-color: #e6dccb;
+    }
+    .box-card.stat-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 18px;
+        bottom: 18px;
+        width: 3px;
+        border-radius: 0 2px 2px 0;
+        background: var(--c);
+    }
+    .box-card.stat-card::after {
+        content: '';
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        width: 48px;
+        height: 48px;
+        opacity: 0.1;
+        border: 6px solid var(--c);
+        border-left-color: transparent;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 0 6px #fffdf8, inset 0 0 0 12px var(--c);
+    }
     .box-card.stat-card .link-color{
         display: block;
-        color: #303133;
+        color: #2a2522;
     }
     .stat-title{
         font-size: 15px;
         font-weight: 600;
         padding-bottom: 14px;
-        border-bottom: 1px solid #ebeef5;
+        border-bottom: 1px dashed #e6dccb;
+        color: #5c534c;
     }
     .stat-num{
-        font-size: 30px;
-        margin: 22px 0;
+        font-family: 'DIN Alternate', 'Bahnschrift', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 34px;
+        margin: 20px 0;
+        color: var(--c);
     }
     .stat-foot{
         display: flex;
         justify-content: space-between;
         font-size: 12px;
-        color: #606266;
+        color: #8f857b;
         padding-top: 12px;
-        border-top: 1px solid #ebeef5;
+        border-top: 1px dashed #e6dccb;
     }
-    .notice{
-        width: 100%;
-        height: 60px;
-        padding: 30px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        background: #ffecd5;
-        margin-bottom: 20px;
-        font-size: 16px;
-        border-radius: 6px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .box-card2 h3,
+    .block-4 .item p {
+        font-family: 'DIN Alternate', 'Bahnschrift', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #b83a2f;
     }
-    .github{
-        width: 100%;
-        height: 60px;
-        padding: 30px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        background: #f8f8f8;
-        margin-bottom: 20px;
-        font-size: 16px;
-        border-radius: 6px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
+    /* 四个转化率指标排成一行 */
+    .block-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
     }
-    .notice .r{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .block-4 .box-card {
+        width: auto;
+        float: none;
+        margin: 0;
     }
-    .github a{
-        margin-right: 20px;
+    .box-card2 .card-head {
+        font-family: 'STKaiti', 'KaiTi', serif;
+        font-size: 17px;
+        letter-spacing: 2px;
+        color: #2a2522;
     }
-    .count{
-        background: #fff;
-        padding: 10px;
+    .box-card2 .card-head::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 15px;
+        margin-right: 8px;
+        vertical-align: -2px;
+        border-radius: 1px;
+        background: #b83a2f;
     }
+
     .float-right{
         float:right;
     }
     .tips {
-        color: #8c939d;
+        color: #a39a8f;
         font-size: 13px;
     }
 
@@ -375,7 +447,7 @@
 
     .line {
         margin: 20px 0;
-        border-top: 1px solid #d1dbe5;
+        border-top: 1px dashed #e0d3bb;
     }
 
     .card-red {

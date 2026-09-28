@@ -1,6 +1,6 @@
 <style scoped>
     body {
-        background: #f5f7fa;
+        background: #f6f1e7;
         display: block;
     }
 
@@ -11,7 +11,7 @@
 
     .content {
         box-sizing: border-box;
-        padding: 20px 20px 20px 220px;
+        padding: 20px 24px 24px 224px;
         min-height: 700px;
         overflow: auto;
     }
