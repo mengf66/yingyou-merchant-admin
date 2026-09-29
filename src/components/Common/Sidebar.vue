@@ -1,7 +1,7 @@
 <template>
   <div class="left-box">
     <div class="logo" @click="$router.push('/dashboard/welcome')">
-      <span class="seal">晋</span>
+      <span class="seal"><img src="@/assets/images/seal-logo.png" alt="应游晋游" /></span>
       <div class="brand">
         <div class="name">应游晋游</div>
         <div class="sub">古城商户后台</div>
@@ -139,7 +139,7 @@ export default {
 };
 </script>
 <style>
-/* 侧栏：黛青底 + 朱红选中，与景区端一致 */
+/* 侧栏：黛青底 + 祥云暗纹 + 朱红选中 + 鎏金细线，与景区端一致 */
 .left-box {
   position: fixed;
   top: 0;
@@ -150,63 +150,106 @@ export default {
   width: 200px;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(201, 164, 92, 0.08), transparent 160px),
-    linear-gradient(180deg, #2b3a4a 0%, #1f2b37 100%);
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+  background:
+    var(--cloud-light) right -30px bottom 200px / 110px 55px no-repeat,
+    var(--cloud-light) left -38px bottom 150px / 96px 48px no-repeat,
+    radial-gradient(120% 60% at 0% 0%, rgba(201, 164, 92, 0.14), transparent 60%),
+    linear-gradient(180deg, #2e3e4f 0%, #243241 55%, #1d2833 100%);
+  box-shadow: 2px 0 14px rgba(0, 0, 0, 0.18);
 }
 
+/* 右缘一道金线 */
+.left-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(232, 207, 148, 0.05), rgba(232, 207, 148, 0.45) 30%, rgba(232, 207, 148, 0.45) 70%, rgba(232, 207, 148, 0.05));
+  pointer-events: none;
+}
+
+/* 底部远山剪影 */
 .left-box::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 130px;
-  opacity: 0.12;
+  height: 140px;
+  opacity: 0.14;
   pointer-events: none;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 140' preserveAspectRatio='none'%3E%3Cpath d='M0 90 L30 60 L55 78 L90 38 L120 70 L150 50 L185 80 L220 55 V140 H0Z' fill='%23c9a45c'/%3E%3Cpath d='M0 115 L40 95 L70 108 L110 88 L150 104 L190 92 L220 100 V140 H0Z' fill='%23c9a45c' opacity='.6'/%3E%3C/svg%3E")
     bottom / 100% 100% no-repeat;
 }
 
 .left-box .logo {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
-  height: 72px;
-  padding: 0 18px;
+  height: 82px;
+  padding: 0 16px;
   flex-shrink: 0;
   cursor: pointer;
-  border-bottom: 1px solid rgba(201, 164, 92, 0.18);
 }
 
+/* logo 下方回纹金带 */
+.left-box .logo::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 10px;
+  opacity: 0.55;
+  background: var(--huiwen-light) left top / 16px 10px repeat-x;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+/* 印章：宣纸底座托着朱印 */
 .left-box .seal {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
-  font-family: "STXingkai", "STKaiti", "KaiTi", serif;
-  font-size: 24px;
-  color: #fff6e6;
-  background: linear-gradient(135deg, #c9483a, #962c23);
+  background: #f6efe0;
   border-radius: 4px;
-  box-shadow: inset 0 0 0 2px rgba(255, 246, 230, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(201, 164, 92, 0.55), 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.left-box .seal img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.left-box .logo:hover .seal {
+  transform: rotate(-4deg);
 }
 
 .left-box .brand .name {
-  font-family: "STXingkai", "STKaiti", "KaiTi", serif;
-  font-size: 21px;
-  letter-spacing: 4px;
+  font-family: var(--font-brush);
+  font-size: 22px;
+  letter-spacing: 2px;
   line-height: 1.1;
+  white-space: nowrap;
   color: #f0d9a2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .left-box .brand .sub {
-  margin-top: 3px;
-  font-size: 11px;
+  margin-top: 4px;
+  font-family: var(--font-title);
+  font-size: 12px;
   letter-spacing: 2px;
-  color: rgba(233, 223, 200, 0.55);
+  white-space: nowrap;
+  color: rgba(233, 223, 200, 0.6);
 }
 
 .left-box .menu-wrap {
@@ -215,7 +258,11 @@ export default {
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 10px 0;
+  padding: 14px 0 12px;
+}
+
+.left-box .menu-wrap::-webkit-scrollbar-thumb {
+  background: rgba(232, 207, 148, 0.25);
 }
 
 .left-box .sidebar {
@@ -226,35 +273,67 @@ export default {
 
 .left-box .el-menu-item,
 .left-box .el-submenu__title {
+  position: relative;
   height: 44px;
   line-height: 44px;
   margin: 2px 10px;
-  border-radius: 4px;
+  padding-left: 16px !important;
+  border-radius: 3px;
+  font-family: var(--font-title);
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #c9d0d8 !important;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .left-box .el-menu-item:hover,
-.left-box .el-submenu__title:hover {
-  background: rgba(201, 164, 92, 0.1) !important;
+.left-box .el-submenu__title:hover,
+.left-box .el-menu-item:focus {
+  background: rgba(232, 207, 148, 0.09) !important;
+  color: #f3e3bd !important;
 }
 
 .left-box .el-menu-item.is-active {
-  background: linear-gradient(90deg, #b83a2f, #9a3027) !important;
-  box-shadow: 0 4px 10px rgba(150, 44, 35, 0.35);
+  color: #fff !important;
+  background: linear-gradient(90deg, #bf3f33, #9a3027) !important;
+  box-shadow: inset 0 0 0 1px rgba(240, 217, 162, 0.28), 0 6px 14px -4px rgba(150, 44, 35, 0.55);
+}
+
+/* 选中项左侧金签 */
+.left-box .el-menu-item.is-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: #f0d9a2;
+}
+
+.left-box .el-submenu.is-opened > .el-submenu__title,
+.left-box .el-submenu.is-active > .el-submenu__title {
+  color: #f0d9a2 !important;
 }
 
 .left-box .el-submenu .el-menu {
-  background: transparent !important;
+  margin: 0 10px;
+  background: rgba(0, 0, 0, 0.12) !important;
+  border-radius: 3px;
 }
 
 .left-box .el-submenu .el-menu-item {
   min-width: 0;
-  height: 40px;
-  line-height: 40px;
-  padding-left: 46px !important;
+  height: 38px;
+  line-height: 38px;
+  margin: 2px 0;
+  padding-left: 38px !important;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
-.left-box .el-submenu__title i {
-  color: #8f9aa6;
+.left-box .el-submenu__title .el-submenu__icon-arrow {
+  color: rgba(232, 207, 148, 0.6);
 }
 
 .left-box .fa {
@@ -263,16 +342,27 @@ export default {
   font-size: 15px;
   text-align: center;
   color: #d9b36a;
+  transition: color 0.2s;
 }
 
 .left-box .el-menu-item.is-active .fa {
   color: #f6e2ae;
 }
 
-.left-box .el-submenu .el-menu-item .fa {
-  width: 10px;
-  margin-right: 8px;
-  font-size: 6px;
-  opacity: 0.7;
+/* 子菜单前的小圆点改成金色小菱形 */
+.left-box .el-submenu .el-menu-item .fa-circle {
+  width: 5px;
+  height: 5px;
+  margin: 0 12px 0 0;
+  font-size: 0;
+  vertical-align: middle;
+  background: #c9a45c;
+  transform: rotate(45deg);
+  opacity: 0.75;
+}
+
+.left-box .el-submenu .el-menu-item.is-active .fa-circle {
+  background: #f6e2ae;
+  opacity: 1;
 }
 </style>

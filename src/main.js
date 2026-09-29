@@ -42,6 +42,15 @@ Vue.use(VueAxios, Axios);
 
 Vue.config.productionTip = false
 
+// rootUrl 改成同源相对地址 '/admin/' 后，少数页面仍用 root + 'xxx' 拼出完整路径，
+// axios 会把 baseURL 再拼一次变成 /admin/admin/xxx；这里对已带前缀的请求跳过 baseURL。
+Axios.interceptors.request.use(config => {
+  if (config.url && config.url.indexOf(api.rootUrl) === 0) {
+    config.baseURL = '';
+  }
+  return config;
+});
+
 router.beforeEach((to, from, next) => {
 
   let token = localStorage.getItem('token') || '';

@@ -31,10 +31,18 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true,
+    },
+    // 接口地址是同源相对路径 /admin/（见 src/config/api.js），开发时转发到本机后端。
+    // 路由用的是 hash 模式（#/dashboard/...），前端页面路径不会以 /admin 开头，不会和接口冲突。
+    proxy: {
+      "/admin": {
+        target: "http://127.0.0.1:8360",
+        changeOrigin: true,
+      },
     },
     // lintOnSave: false,
     // before: require("./mock/mock-server.js"),

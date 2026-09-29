@@ -11,28 +11,28 @@
                     <h2>{{ greeting }}，{{ username || '掌柜' }}</h2>
                     <p>今日也请用心经营 · 让古城烟火气传得更远</p>
                 </div>
-                <div class="hero-date">{{ today }}</div>
+                <div class="hero-date"><span class="hero-date-seal">晋</span>{{ today }}</div>
             </div>
             <div class="header clearfix">
                 <el-card class="box-card stat-card" shadow="hover" style="--c: #b83a2f">
                     <router-link class="link-color" :to="{ path: '/dashboard/order' }">
                         <div class="stat-title">待发货订单</div>
                         <h1 class="stat-num">{{infoData.orderToDelivery || 0}}</h1>
-                        <div class="stat-foot"><span>待发货订单</span><span>{{infoData.orderToDelivery || 0}}</span></div>
+                        <div class="stat-foot"><span>点击查看详情</span><i class="el-icon-arrow-right"></i></div>
                     </router-link>
                 </el-card>
                 <el-card class="box-card stat-card" shadow="hover" style="--c: #3f7a5f">
                     <router-link class="link-color" :to="{ path: '/dashboard/goods' }">
                         <div class="stat-title">上架中的商品</div>
                         <h1 class="stat-num">{{infoData.goodsOnsale || 0}}</h1>
-                        <div class="stat-foot"><span>上架中的商品</span><span>{{infoData.goodsOnsale || 0}}</span></div>
+                        <div class="stat-foot"><span>点击查看详情</span><i class="el-icon-arrow-right"></i></div>
                     </router-link>
                 </el-card>
                 <el-card class="box-card stat-card" shadow="hover" style="--c: #a88340">
                     <router-link class="link-color" :to="{ path: '/dashboard/user' }">
                         <div class="stat-title">总用户数</div>
                         <h1 class="stat-num">{{infoData.user || 0}}</h1>
-                        <div class="stat-foot"><span>总用户数</span><span>{{infoData.user || 0}}</span></div>
+                        <div class="stat-foot"><span>点击查看详情</span><i class="el-icon-arrow-right"></i></div>
                     </router-link>
                 </el-card>
             </div>
@@ -262,97 +262,179 @@
 </script>
 
 <style scoped>
+    /* 首页横幅：宣纸底青绿山水长卷，左侧留白写问候语 */
     .hero {
         position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 96px;
-        padding: 0 28px;
-        margin-bottom: 20px;
+        height: 132px;
+        padding: 0 32px;
+        margin: -4px -6px 24px;
         overflow: hidden;
-        color: #f0d9a2;
-        border-radius: 6px;
+        border: 1px solid #e3d6bf;
+        border-radius: 4px;
         background:
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 96' preserveAspectRatio='xMaxYMax slice'%3E%3Cg fill='%23c9a45c' opacity='.18'%3E%3Cpath d='M300 96 V70 H600 V96Z'/%3E%3Cpath d='M380 70 L400 52 H520 L540 70Z'/%3E%3Crect x='410' y='40' width='100' height='14'/%3E%3Cpath d='M396 42 L420 26 H500 L524 42Z'/%3E%3Crect x='456' y='14' width='8' height='14'/%3E%3C/g%3E%3C/svg%3E") right bottom / auto 100% no-repeat,
-            linear-gradient(120deg, #2b3a4a 0%, #1f2b37 60%, #3a2a24 100%);
+            linear-gradient(90deg, rgba(250, 244, 230, 0.96) 0%, rgba(250, 244, 230, 0.82) 34%, rgba(250, 244, 230, 0.15) 70%, rgba(250, 244, 230, 0.05) 100%),
+            url("~@/assets/images/banner-mountains.webp") right 62% / cover no-repeat,
+            #f5ecd8;
+        box-shadow: inset 0 0 0 4px rgba(255, 253, 248, 0.55), inset 0 0 0 5px rgba(201, 164, 92, 0.28);
+    }
+    /* 底部回纹金带 */
+    .hero::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 6px;
+        height: 10px;
+        opacity: 0.5;
+        background: var(--huiwen) left top / 16px 10px repeat-x;
+        -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 75%);
+        mask-image: linear-gradient(90deg, #000 0%, #000 40%, transparent 75%);
+    }
+    .hero-text {
+        position: relative;
+        z-index: 1;
     }
     .hero h2 {
-        margin: 0 0 6px;
-        font-family: 'STXingkai', 'STKaiti', 'KaiTi', serif;
-        font-size: 26px;
+        margin: 0 0 10px;
+        font-family: var(--font-brush);
+        font-size: 32px;
         font-weight: normal;
-        letter-spacing: 3px;
+        letter-spacing: 4px;
+        color: #2a2522;
     }
     .hero p {
         margin: 0;
-        font-size: 13px;
-        letter-spacing: 2px;
-        color: rgba(233, 223, 200, 0.65);
+        font-family: var(--font-title);
+        font-size: 14px;
+        letter-spacing: 3px;
+        color: #7a6a58;
     }
     .hero-date {
         position: relative;
         z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        align-self: flex-start;
+        margin-top: 20px;
+        padding: 6px 14px 6px 8px;
         font-size: 13px;
-        color: rgba(233, 223, 200, 0.8);
+        letter-spacing: 1px;
+        color: #3d352f;
+        background: rgba(255, 253, 248, 0.82);
+        border: 1px solid rgba(201, 164, 92, 0.45);
+        border-radius: 3px;
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+    }
+    .hero-date-seal {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        font-family: var(--font-brush);
+        font-size: 15px;
+        color: #fff6e6;
+        background: linear-gradient(135deg, #c9483a, #962c23);
+        border-radius: 2px;
+    }
+
+    /* 三张统计卡：顶部色带 + 角花 + 细金线内框 */
+    .header {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 26px;
+    }
+    .header .box-card {
+        width: auto;
+        float: none;
+        margin: 0;
     }
     .box-card.stat-card {
         position: relative;
         overflow: hidden;
-        border-color: #e6dccb;
+        border-color: #e3d6bf;
+        background:
+            var(--corner-bl) left 5px bottom 5px / 16px 16px no-repeat,
+            var(--corner-br) right 5px bottom 5px / 16px 16px no-repeat,
+            radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--c) 9%, transparent), transparent 60%),
+            linear-gradient(180deg, #fffdf8, #fffaf1);
+        box-shadow: inset 0 0 0 3px #fffdf8, inset 0 0 0 4px rgba(201, 164, 92, 0.18), 0 1px 2px rgba(80, 60, 30, 0.05);
+    }
+    .box-card.stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: inset 0 0 0 3px #fffdf8, inset 0 0 0 4px rgba(201, 164, 92, 0.32), 0 14px 26px -14px rgba(80, 60, 30, 0.35);
     }
     .box-card.stat-card::before {
         content: '';
         position: absolute;
         left: 0;
-        top: 18px;
-        bottom: 18px;
-        width: 3px;
-        border-radius: 0 2px 2px 0;
-        background: var(--c);
+        right: 0;
+        top: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 30%, #e8cf94));
     }
+    /* 右上角回纹方印（装饰） */
     .box-card.stat-card::after {
         content: '';
         position: absolute;
-        right: 16px;
-        bottom: 16px;
-        width: 48px;
-        height: 48px;
-        opacity: 0.1;
+        right: 18px;
+        top: 22px;
+        width: 46px;
+        height: 46px;
+        opacity: 0.12;
         border: 6px solid var(--c);
         border-left-color: transparent;
         box-sizing: border-box;
         box-shadow: inset 0 0 0 6px #fffdf8, inset 0 0 0 12px var(--c);
+        transition: opacity 0.25s ease, transform 0.4s ease;
     }
-    .box-card.stat-card .link-color{
+    .box-card.stat-card:hover::after {
+        opacity: 0.22;
+        transform: rotate(90deg);
+    }
+    .box-card.stat-card .link-color {
         display: block;
         color: #2a2522;
     }
-    .stat-title{
-        font-size: 15px;
-        font-weight: 600;
-        padding-bottom: 14px;
-        border-bottom: 1px dashed #e6dccb;
+    .stat-title {
+        font-family: var(--font-title);
+        font-size: 17px;
+        letter-spacing: 2px;
+        padding-bottom: 12px;
         color: #5c534c;
     }
-    .stat-num{
-        font-family: 'DIN Alternate', 'Bahnschrift', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 34px;
-        margin: 20px 0;
+    .stat-num {
+        font-family: var(--font-num);
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 1.1;
+        margin: 6px 0 18px;
         color: var(--c);
     }
-    .stat-foot{
+    .stat-foot {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         font-size: 12px;
+        letter-spacing: 1px;
         color: #8f857b;
         padding-top: 12px;
         border-top: 1px dashed #e6dccb;
+        transition: color 0.2s;
+    }
+    .box-card.stat-card:hover .stat-foot {
+        color: var(--c);
     }
     .box-card2 h3,
     .block-4 .item p {
-        font-family: 'DIN Alternate', 'Bahnschrift', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 18px;
+        font-family: var(--font-num);
+        font-size: 20px;
         font-weight: 600;
         color: #b83a2f;
     }
@@ -366,30 +448,77 @@
         width: auto;
         float: none;
         margin: 0;
+        background:
+            var(--corner-tl) left 4px top 4px / 14px 14px no-repeat,
+            var(--corner-br) right 4px bottom 4px / 14px 14px no-repeat,
+            linear-gradient(180deg, #fffdf8, #fcf7ee);
+    }
+    .block-4 .box-card:hover {
+        transform: translateY(-2px);
+    }
+    .block-4 .item span {
+        font-family: var(--font-title);
+        font-size: 15px;
+        letter-spacing: 1px;
+        color: #4a423c;
+    }
+    /* 顾客 / 下单 / 支付 三栏 */
+    .tab-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .tab-content .box-card2 {
+        width: auto;
+        float: none;
+        margin: 0;
     }
     .box-card2 .card-head {
-        font-family: 'STKaiti', 'KaiTi', serif;
-        font-size: 17px;
-        letter-spacing: 2px;
+        font-family: var(--font-title);
+        font-size: 18px;
+        letter-spacing: 3px;
         color: #2a2522;
     }
     .box-card2 .card-head::before {
         content: '';
         display: inline-block;
-        width: 4px;
-        height: 15px;
-        margin-right: 8px;
-        vertical-align: -2px;
+        width: 8px;
+        height: 8px;
+        margin: 0 12px 0 3px;
+        vertical-align: 2px;
         border-radius: 1px;
-        background: #b83a2f;
+        transform: rotate(45deg);
+        background: linear-gradient(135deg, #cf4b3d, #962c23);
+        box-shadow: 0 0 0 2px #fffdf8, 0 0 0 3px rgba(184, 58, 47, 0.35);
+    }
+    .box-card2 .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed #efe6d6;
+    }
+    .box-card2 .item:last-child {
+        border-bottom: none;
+    }
+    .box-card2 .item h3 {
+        float: none !important;
+        margin: 0;
+    }
+    .box-card2 .item span {
+        color: #5c534c;
+    }
+    .main .o-tab {
+        margin-bottom: 4px;
     }
 
-    .float-right{
-        float:right;
+    .float-right {
+        float: right;
     }
     .tips {
         color: #a39a8f;
-        font-size: 13px;
+        font-size: 12px;
+        letter-spacing: 1px;
     }
 
     .text {
@@ -407,88 +536,32 @@
     }
 
     .clearfix:after {
-        clear: both
+        clear: both;
     }
-    .tab-content{
-        margin-bottom: 20px;
-    }
-    .box-card {
-        width: 32%;
-        float: left;
-        margin:0 20px 14px 0;
-    }
-
-    .box-card:last-child {
-        margin-right: 0px;
-    }
-
-
-    .box-card .link-color{
-        color: #fff;
-    }
-
-    .box-card:last-child {
-        margin-right: 0;
-    }
-
-    .box-card2 {
-        width: 32%;
-        float: left;
-        margin-right: 17px;
-    }
-
-    .box-card2:last-child {
-        margin-right: 0;
-    }
-
-    .header {
-        margin-bottom: 30px;
+    /* 这两个容器改成了 grid 布局，清浮动用的伪元素会占掉一个格子，需要去掉 */
+    .header.clearfix:before,
+    .header.clearfix:after,
+    .tab-content.clearfix:before,
+    .tab-content.clearfix:after {
+        display: none;
     }
 
     .line {
-        margin: 20px 0;
-        border-top: 1px dashed #e0d3bb;
-    }
-
-    .card-red {
-        background: #e64242;
+        margin: 24px 0;
+        height: 10px;
         border: none;
-        color: #fff;
+        opacity: 0.4;
+        background: var(--huiwen) left top / 16px 10px repeat-x;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
     }
 
-    .card-blue {
-        background: #4db3ff;
-        border: none;
-        color: #fff;
+    @media (max-width: 1200px) {
+        .block-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-date {
+            display: none;
+        }
     }
-    .card-green{
-        background: #11b95c;
-        border:none;
-        color: #fff;
-    }
-    .card-black{
-        background: #1f2d3d;
-        border:none;
-        color: #fff;
-    }
-    .card-gray{
-        background: #d1dbe5;
-        border:none;
-
-    }
-    .card-gray a{
-        color: #1f2d3d;
-    }
-    .card-yellow{
-        background: #f8dd66;
-        border:none;
-        color: #111111;
-    }
-
-     .card-yellow .link-color{
-        color: #111111;
-    }
-
-
-
 </style>

@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" type="image/png" href="<%= BASE_URL %>favicon.png">
+    <meta name="theme-color" content="#b83a2f">
     <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-    <link href="/admin/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 原来写的是 /admin/css/...，会被当成接口路径转发到后端而 404；改为跟随 publicPath 的相对路径 -->
+    <link href="<%= BASE_URL %>css/font-awesome.min.css" rel="stylesheet">
     <title><%= webpackConfig.name %></title>
   </head>
   <body>

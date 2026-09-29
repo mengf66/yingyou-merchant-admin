@@ -1,4 +1,6 @@
-const rootUrl = 'http://127.0.0.1:8360/admin/';
+// 接口走同源相对地址：线上前端在 http://101.200.184.201:9860/，nginx 把 /admin/ 反代到后端；
+// 本地开发由 vue.config.js 的 devServer.proxy 把 /admin 转发到 http://127.0.0.1:8360
+const rootUrl = '/admin/';
 
 const api = {
     rootUrl : rootUrl,
